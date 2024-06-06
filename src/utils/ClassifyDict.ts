@@ -63,6 +63,10 @@ export const classifyDict: classifyDictType = {
     "ドラパルトex": { "amount": 2, "gl": "g" },
     "キュワワー": { "amount": 1, "gl": "g" },
   },
+  "ドラパルト/リザードン": {
+    "ドラパルトex": { "amount": 2, "gl": "g" },
+    "リザードンex": { "amount": 1, "gl": "g" },
+  },
   "おまつりおんど": {
     "カミッチュ": { "amount": 2, "gl": "g" },
     "バチンキー": { "amount": 2, "gl": "g" },
@@ -122,7 +126,11 @@ export const classifyDict: classifyDictType = {
   },
   "タケルライコ/オーガポン": {
     "タケルライコex": { "amount": 2, "gl": "g" },
-    "オーガポン みどりのめんex": { "amount": 2, "gl": "g" },
+    "オーガポン みどりのめんex": { "amount": 1, "gl": "g" },
+  },
+  "タケルライコ": {
+    "タケルライコex": { "amount": 2, "gl": "g" },
+    "オーガポン みどりのめんex": { "amount": 1, "gl": "l" },
   },
   "トドロクツキ(あだうちやばね)": {
     "トドロクツキ": { "amount": 4, "gl": "g" },
