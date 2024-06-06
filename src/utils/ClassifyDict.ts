@@ -156,4 +156,8 @@ export const classifyDict: classifyDictType = {
   "クエスパトラex": {
     "クエスパトラex": { "amount": 2, "gl": "g" },
   },
+  "ハピナス/マシマシラ": {
+    "ハピナスex": { "amount": 2, "gl": "g" },
+    "マシマシラ": { "amount": 2, "gl": "g" },
+  },
 };
