@@ -35,7 +35,7 @@ function GenCardDict(htmlText: string) {
 };
 
 function extractDeckData(pattern: RegExp, htmlText: string, cardDict: CardDict) {
-  const amountPattern = /(\d+)_(\d)/g;
+  const amountPattern = /(\d+)_(\d){1,2}/g;
 
   const deckList: { [key: string]: number; } = {};
 
