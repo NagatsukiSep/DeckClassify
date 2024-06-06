@@ -46,8 +46,8 @@ export const Top = () => {
     let tmp: string[] = [];
     for (const column of columns) {
       if (!data[0][column]) {
-        setError(`Column ${column} not found`);
-        return;
+        // setError(`Column ${column} not found`);
+        break;
       }
       const extractedData = data.map((row) => row[column]);
       tmp = [...tmp, ...extractedData];
