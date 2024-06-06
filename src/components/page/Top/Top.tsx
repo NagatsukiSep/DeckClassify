@@ -38,7 +38,7 @@ export const Top = () => {
   };
 
   const handleOnClick = () => {
-    extractSelectedColumns(csvData, ["デッキコード1", "デッキコード2", "デッキコード3"]);
+    extractSelectedColumns(csvData, ["デッキコード", "デッキコード1", "デッキコード2", "デッキコード3"]);
   }
 
   const extractSelectedColumns = (data: CSVRow[], columns: string[]) => {
