@@ -113,7 +113,6 @@ export const Top = () => {
       <BasicButton onClick={handleOnClick}>集計</BasicButton>
       <div className="h-[1px] bg-black w-full px-3" />
       <div>
-        {error && <p>{error}</p>}
         <div className="grid grid-cols-3 gap-4 px-8 py-4">
           {data.map((d) => (
             <DeckCard key={d.id} deckCode={d.code} deckType={d.deckType} />
