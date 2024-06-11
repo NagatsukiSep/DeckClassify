@@ -101,7 +101,7 @@ export const Top = () => {
 
 
   return (
-    <div className="md:px-16 px-8 pt-8">
+    <div className="md:px-16 px-8 pt-8 overflow-x-hidden">
       <div className="text-2xl font-bold">Decklassify</div>
       <div className="font-m-plus-1p">
         ここにcsvファイルをアップロードしてください
@@ -129,19 +129,19 @@ export const Top = () => {
           className="min-w-full text-left text-sm font-light text-surface dark:text-white">
           <thead
             className="border-b border-neutral-200 font-medium dark:border-white/10">
-            <tr><th scope="col" className="px-6 py-4"></th>
-              <th scope="col" className="px-6 py-4">デッキタイプ</th>
-              <th scope="col" className="px-6 py-4">数</th>
-              <th scope="col" className="px-6 py-4">割合</th>
+            <tr><th scope="col" className="mx-6 py-4"></th>
+              <th scope="col" className="mx-6 py-4">デッキタイプ</th>
+              <th scope="col" className="mx-6 py-4">数</th>
+              <th scope="col" className="mx-6 py-4">割合</th>
             </tr>
           </thead>
           <tbody>
             {Object.keys(freq).map((deckType) => (
               <tr key={deckType} className="border-b border-neutral-200 dark:border-white/10">
-                <td className="whitespace-nowrap px-6 py-4 font-medium">{Object.keys(freq).indexOf(deckType) + 1}</td>
-                <td className="whitespace-nowrap px-6 py-4">{deckType}</td>
-                <td className="whitespace-nowrap px-6 py-4">{freq[deckType]}</td>
-                <td className="whitespace-nowrap px-6 py-4">{(freq[deckType] / total * 100).toFixed(2)}%</td>
+                <td className="mx-6 py-4 font-medium">{Object.keys(freq).indexOf(deckType) + 1}</td>
+                <td className="mx-6 py-4">{deckType}</td>
+                <td className="whitespace-break-spaces mx-6 py-4">{freq[deckType]}</td>
+                <td className="mx-6 py-4">{(freq[deckType] / total * 100).toFixed(2)}%</td>
               </tr>
             ))}
           </tbody>
