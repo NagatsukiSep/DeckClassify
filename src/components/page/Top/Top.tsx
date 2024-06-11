@@ -101,7 +101,7 @@ export const Top = () => {
 
 
   return (
-    <div className="px-16 pt-8">
+    <div className="md:px-16 px-8 pt-8">
       <div className="text-2xl font-bold">Decklassify</div>
       <div className="font-m-plus-1p">
         ここにcsvファイルをアップロードしてください
@@ -112,7 +112,7 @@ export const Top = () => {
       <BasicButton onClick={handleOnClick}>集計</BasicButton>
       <div className="h-[1px] bg-black w-full px-3" />
       <div>
-        <div className="grid grid-cols-3 gap-4 px-8 py-4">
+        <div className="grid md:grid-cols-3 grid-cols-1 w-full gap-4 px-8 py-4">
           {data.map((d) => (
             <DeckCard key={d.id} deckCode={d.code} deckType={d.deckType} />
           ))}
