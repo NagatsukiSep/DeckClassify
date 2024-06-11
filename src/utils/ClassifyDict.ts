@@ -108,7 +108,7 @@ export const classifyDict: classifyDictType = {
     "カウンターキャッチャー": { "amount": 2, "gl": "g" },
     "ともだちてちょう": { "amount": 2, "gl": "g" },
   },
-  "未来テツノカイナex": {
+  "未来テツノカイナ": {
     "テツノカイナex": { "amount": 3, "gl": "g" },
     "ミライドン": { "amount": 2, "gl": "g" },
   },
@@ -138,22 +138,22 @@ export const classifyDict: classifyDictType = {
   "イダイナキバMill": {
     "イダイナキバ": { "amount": 3, "gl": "g" },
   },
-  "ミライドンex": {
+  "ミライドン": {
     "ミライドンex": { "amount": 2, "gl": "g" },
   },
-  "サーフゴーex": {
+  "サーフゴー": {
     "サーフゴーex": { "amount": 1, "gl": "g" },
   },
   "オリジンディアルガ": {
     "オリジンディアルガVSTAR": { "amount": 1, "gl": "g" },
   },
-  "マスカーニャex": {
+  "マスカーニャ": {
     "マスカーニャex": { "amount": 1, "gl": "g" },
   },
   "ヒスイゾロアーク": {
     "ヒスイゾロアークVSTAR": { "amount": 1, "gl": "g" },
   },
-  "クエスパトラex": {
+  "クエスパトラ": {
     "クエスパトラex": { "amount": 2, "gl": "g" },
   },
   "ハピナス/マシマシラ": {
