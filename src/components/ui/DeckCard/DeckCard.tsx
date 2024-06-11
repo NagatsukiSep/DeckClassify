@@ -18,7 +18,7 @@ export const DeckCard = (props: { deckCode: string, deckType: string }) => {
           {props.deckType}
         </div>
       )}
-      <div className="text-center font-m-plus-1p text-xs">
+      <div className="text-center font-m-plus-1p text-xs underline">
         <a href={`https://www.pokemon-card.com/deck/confirm.html/deckID/${props.deckCode}`} target="_blank" rel="noreferrer">
           {props.deckCode}
         </a>
