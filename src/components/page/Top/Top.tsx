@@ -108,17 +108,17 @@ export const Top = () => {
       <img src="Logo.png" alt="logo" className="w-32 h-auto m-2" />
       <div className="font-m-plus-1p">
       <label htmlFor="csvUpload">ここにCSVファイルをアップロードしてください</label>
-    </div>
+      </div>
     <div className="font-m-plus-1p">
       <input type="file" id="csvUpload" accept=".csv" onChange={handleFileChange} title="CSVファイルを選択" />
     </div>
     <BasicButton onClick={handleOnClick}>集計</BasicButton>
-      <div className="h-[1px] bg-black w-full px-3" />
+    <div className="h-[1px] bg-black w-full px-3" />
+    {deckCodes.length > 0 && (
       <div>
         <DeckGrid data={data} />
-      </div>
-      <div className="h-[1px] bg-black w-full px-3" />
-      <div className="py-2">
+        <div className="h-[1px] bg-black w-full px-3" />
+        <div className="py-2">
         {/* {Object.keys(freq).map((deckType) => (
           <li key={deckType}>
             <strong>{deckType}</strong>: {freq[deckType]}
@@ -128,7 +128,8 @@ export const Top = () => {
           className="min-w-full text-left text-sm font-light text-surface dark:text-white">
           <thead
             className="border-b border-neutral-200 font-medium dark:border-white/10">
-            <tr><th scope="col" className="mx-6 py-4"></th>
+            <tr>
+              <th scope="col" className="mx-6 py-4"></th>
               <th scope="col" className="mx-6 py-4">デッキタイプ</th>
               <th scope="col" className="mx-6 py-4">数</th>
               <th scope="col" className="mx-6 py-4">割合</th>
@@ -146,6 +147,8 @@ export const Top = () => {
           </tbody>
         </table>
       </div>
+      </div>
+    )}
     </div>
   );
 }
