@@ -38,6 +38,9 @@ export const Top = () => {
   };
 
   const handleOnClick = () => {
+    if (csvData.length === 0) {
+      return;
+    }
     extractSelectedColumns(csvData, ["デッキコード", "デッキコード1", "デッキコード2", "デッキコード3"]);
   }
 
@@ -104,12 +107,12 @@ export const Top = () => {
     <div className="md:px-16 px-8 pt-8 overflow-x-hidden">
       <div className="text-2xl font-bold">Decklassify</div>
       <div className="font-m-plus-1p">
-        ここにcsvファイルをアップロードしてください
-      </div>
-      <div className="font-m-plus-1p">
-        <input type="file" accept=".csv" onChange={handleFileChange} />
-      </div>
-      <BasicButton onClick={handleOnClick}>集計</BasicButton>
+      <label htmlFor="csvUpload">ここにCSVファイルをアップロードしてください</label>
+    </div>
+    <div className="font-m-plus-1p">
+      <input type="file" id="csvUpload" accept=".csv" onChange={handleFileChange} title="CSVファイルを選択" />
+    </div>
+    <BasicButton onClick={handleOnClick}>集計</BasicButton>
       <div className="h-[1px] bg-black w-full px-3" />
       <div>
         <DeckGrid data={data} />
