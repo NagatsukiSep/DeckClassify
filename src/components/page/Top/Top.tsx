@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Papa from 'papaparse';
 import { Classify } from '../../../utils/Classify';
 import { BasicButton } from '../../ui/Button';
-import { DeckCard } from '../../ui/DeckCard';
+import { DeckGrid } from '../../ui/DeckCard';
 
 interface CSVRow {
   [key: string]: string;
@@ -112,11 +112,7 @@ export const Top = () => {
       <BasicButton onClick={handleOnClick}>集計</BasicButton>
       <div className="h-[1px] bg-black w-full px-3" />
       <div>
-        <div className="grid md:grid-cols-3 grid-cols-1 w-full gap-4 px-8 py-4">
-          {data.map((d) => (
-            <DeckCard key={d.id} deckCode={d.code} deckType={d.deckType} />
-          ))}
-        </div>
+        <DeckGrid data={data} />
       </div>
       <div className="h-[1px] bg-black w-full px-3" />
       <div className="py-2">

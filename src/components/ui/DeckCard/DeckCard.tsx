@@ -2,7 +2,7 @@ import { Code2Image } from "../../../utils/Code2Image";
 
 export const DeckCard = (props: { deckCode: string, deckType: string }) => {
   return (
-    <div className="w-full bg-[#C8F2FF] p-3 rounded-lg">
+    <div className="w-full bg-[#C8F2FF] p-3 rounded-lg shadow-xl">
       <img
         className="w-full h-auto"
         src={Code2Image(props.deckCode)}
