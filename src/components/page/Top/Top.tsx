@@ -114,7 +114,7 @@ export const Top = () => {
     </div>
     <BasicButton onClick={handleOnClick}>集計</BasicButton>
     <div className="h-[1px] bg-black w-full px-3" />
-    {deckCodes.length > 0 && (
+    {data.length > 0 && (
       <div>
         <DeckGrid data={data} />
         <div className="h-[1px] bg-black w-full px-3" />
