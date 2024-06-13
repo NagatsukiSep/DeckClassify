@@ -105,7 +105,7 @@ export const Top = () => {
 
   return (
     <div className="md:px-16 px-8 pt-8 overflow-x-hidden">
-      <div className="text-2xl font-bold">Decklassify</div>
+      <img src="Logo.png" alt="logo" className="w-32 h-auto m-2" />
       <div className="font-m-plus-1p">
       <label htmlFor="csvUpload">ここにCSVファイルをアップロードしてください</label>
     </div>
