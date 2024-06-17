@@ -41,6 +41,10 @@ export const Top = () => {
     if (csvData.length === 0) {
       return;
     }
+    // 二重に実行されないようにする
+    if (data.length > 0) {
+      return;
+    }
     extractSelectedColumns(csvData, ["デッキコード", "デッキコード1", "デッキコード2", "デッキコード3"]);
   }
 
