@@ -6,6 +6,7 @@ type dataType = {
   id: number,
   code: string,
   deckType: string
+  ace: string
 }
 
 interface Props {
@@ -32,7 +33,7 @@ export const DeckGrid: React.FC<Props> = ({ data }) => {
     <div className="w-full px-8 py-4">
       <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
         {currentItems.map((d) => (
-          <DeckCard key={d.id} deckCode={d.code} deckType={d.deckType} />
+          <DeckCard key={d.id} deckCode={d.code} deckType={d.deckType} ace={d.ace} />
         ))}
       </div>
       <div className="flex justify-center items-center mt-4">

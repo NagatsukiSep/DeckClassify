@@ -58,33 +58,35 @@ export const Top = () => {
   };
 
 
-  type dataType = {
+  type DataType = {
     id: number,
     code: string,
     deckType: string
+    ace: string
   }
 
   const [error, setError] = React.useState<string | null>(null);
-  const [data, setData] = React.useState<dataType[]>([]);
+  const [data, setData] = React.useState<DataType[]>([]);
   const [freq, setFreq] = React.useState<{ [deckType: string]: number }>({});
   const [total, setTotal] = React.useState<number>(0);
 
   useEffect(() => {
     const classifyCodesSequentially = async () => {
       const newFreq: { [deckType: string]: number } = {};
-      const newData: { id: number, code: string, deckType: string }[] = [];
+      const newData: DataType[] = [];
       for (const code of deckCodes) {
         try {
           const res = await Classify(code);
-          if (newFreq[res]) {
-            newFreq[res] += 1;
+          if (newFreq[res.deckType]) {
+            newFreq[res.deckType] += 1;
           } else {
-            newFreq[res] = 1;
+            newFreq[res.deckType] = 1;
           }
           setTotal((prevTotal) => prevTotal + 1);
-          newData.push({ id: newData.length, code, deckType: res });
+          newData.push({ id: newData.length, code, deckType: res.deckType, ace: res.ace});
         } catch (e) {
           setError("Error occurred while classifying codes");
+          console.error(e);
         }
       }
       setFreq((prevFreq) => ({ ...prevFreq, ...newFreq }));

@@ -1,8 +1,32 @@
 import { classifyDict } from "./ClassifyDict"
 import { Code2Dict } from "./Code2Dict";
+import { ClassifiedData } from '../types/ClassifyData';
 
 export async function Classify(code: string) {
+  let classifiedData : ClassifiedData = {
+    deckType: "その他",
+    ace: ""
+  }
   const deckList = await Code2Dict(code);
+
+  const pattern = /(.*)\(ACE SPEC\)/g;
+  for (const card in deckList) {
+    const match = pattern.exec(card);
+    if (match) {
+      console.log(deckList)
+      console.log(match[1]);
+      classifiedData.ace = match[1];
+    }
+    //　たまに(ACE SPEC) がつかないACE SPECがあるのでその対応
+    //  エネルギーはつかなそうなので対応
+    if (card === "レガシーエネルギー") {
+      classifiedData.ace = "レガシーエネルギー";
+    }
+    if (card === "ネオアッパーエネルギー") {
+      classifiedData.ace = "ネオアッパーエネルギー";
+    }
+  }
+
   for (const deckType in classifyDict) {
     const condition = classifyDict[deckType];
     let flag = true;
@@ -24,11 +48,13 @@ export async function Classify(code: string) {
       }
     }
     if (flag) {
-      return deckType;
+      classifiedData.deckType = deckType;
+      return classifiedData;
     }
   }
   if (deckList && Object.keys(deckList).length === 0) {
-    return "不正なデッキコード";
+    classifiedData.deckType = "エラー";
+    return classifiedData;
   }
-  return "その他";
+  return classifiedData;
 }
