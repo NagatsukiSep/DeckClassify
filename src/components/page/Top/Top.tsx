@@ -65,22 +65,43 @@ export const Top = () => {
     ace: string
   }
 
+  type FreqType = {
+    [deckType: string]: {
+      freq: number,
+      aceFreq: {[ace: string]: number}
+    }
+  }
+
   const [error, setError] = React.useState<string | null>(null);
   const [data, setData] = React.useState<DataType[]>([]);
-  const [freq, setFreq] = React.useState<{ [deckType: string]: number }>({});
+  const [freq, setFreq] = React.useState<FreqType>({});
   const [total, setTotal] = React.useState<number>(0);
+  
+  const [showAce, setShowAce] = React.useState<boolean>(false);
+  const handleShowAce = () => {
+    setShowAce(!showAce);
+  }
 
   useEffect(() => {
     const classifyCodesSequentially = async () => {
-      const newFreq: { [deckType: string]: number } = {};
+      const newFreq: FreqType = {};
       const newData: DataType[] = [];
       for (const code of deckCodes) {
         try {
           const res = await Classify(code);
           if (newFreq[res.deckType]) {
-            newFreq[res.deckType] += 1;
+            newFreq[res.deckType].freq += 1;
+            if (newFreq[res.deckType].aceFreq[res.ace]) {
+              newFreq[res.deckType].aceFreq[res.ace] += 1;
+            } else {
+              newFreq[res.deckType].aceFreq[res.ace] = 1;
+            }
           } else {
-            newFreq[res.deckType] = 1;
+            newFreq[res.deckType] = { 
+              freq: 1, 
+              aceFreq: {
+                [res.ace]: 1
+              } };
           }
           setTotal((prevTotal) => prevTotal + 1);
           newData.push({ id: newData.length, code, deckType: res.deckType, ace: res.ace});
@@ -92,15 +113,26 @@ export const Top = () => {
       setFreq((prevFreq) => ({ ...prevFreq, ...newFreq }));
       //freqをソートする
       const sortable = Object.entries(newFreq);
-      sortable.sort((a, b) => b[1] - a[1]);
-      const sortedFreq: { [deckType: string]: number } = {};
+      sortable.sort((a, b) => b[1].freq - a[1].freq);
+      const sortedFreq: FreqType = {};
       sortable.forEach(([key, value]) => {
         sortedFreq[key] = value;
       });
       setFreq(sortedFreq);
+      //aceFreqをソートする
+      Object.keys(sortedFreq).forEach((deckType) => {
+        const aceFreq = sortedFreq[deckType].aceFreq;
+        const sortableAce = Object.entries(aceFreq);
+        sortableAce.sort((a, b) => b[1] - a[1]);
+        const sortedAceFreq: {[ace: string]: number} = {};
+        sortableAce.forEach(([key, value]) => {
+          sortedAceFreq[key] = value;
+        });
+        sortedFreq[deckType].aceFreq = sortedAceFreq;
+      });
+      setFreq(sortedFreq);
       setData(newData);
     };
-
     classifyCodesSequentially();
   }, [deckCodes]);
 
@@ -126,6 +158,16 @@ export const Top = () => {
             <strong>{deckType}</strong>: {freq[deckType]}
           </li>
         ))} */}
+        <div className="w-full flex justify-between">
+          <b>デッキタイプ別割合</b>
+          <div className="">
+            {total}   デッキ中
+          </div>
+        </div>
+        <div className="w-full flex justify-end text-sm">
+          <input type="checkbox" id="showAce" onChange={handleShowAce} />
+          <label htmlFor="showAce">ACE SPECを表示する</label>
+        </div>
         <table
           className="min-w-full text-left text-sm font-light text-surface dark:text-white">
           <thead
@@ -141,9 +183,20 @@ export const Top = () => {
             {Object.keys(freq).map((deckType) => (
               <tr key={deckType} className="border-b border-neutral-200 dark:border-white/10">
                 <td className="mx-6 py-4 font-medium">{Object.keys(freq).indexOf(deckType) + 1}</td>
-                <td className="mx-6 py-4">{deckType}</td>
-                <td className="whitespace-break-spaces mx-6 py-4">{freq[deckType]}</td>
-                <td className="mx-6 py-4">{(freq[deckType] / total * 100).toFixed(2)}%</td>
+                <td className="mx-6 py-4">
+                  <div className="font-bold">{deckType}</div>
+                    {showAce && (
+                      <ul className="ml-4">
+                        {Object.keys(freq[deckType].aceFreq).map((ace) => (
+                          <li key={ace} className="border-l border-neutral-400 dark:border-white/10 pl-2">
+                            {ace}: {freq[deckType].aceFreq[ace]} <small>({(freq[deckType].aceFreq[ace] / freq[deckType].freq * 100).toFixed(0)}%)</small>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </td>
+                <td className="whitespace-break-spaces mx-6 py-4">{freq[deckType].freq}</td>
+                <td className="mx-6 py-4">{(freq[deckType].freq / total * 100).toFixed(2)}%</td>
               </tr>
             ))}
           </tbody>

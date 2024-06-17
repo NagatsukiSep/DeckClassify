@@ -5,7 +5,7 @@ import { ClassifiedData } from '../types/ClassifyData';
 export async function Classify(code: string) {
   let classifiedData : ClassifiedData = {
     deckType: "その他",
-    ace: ""
+    ace: "無し"
   }
   const deckList = await Code2Dict(code);
 
@@ -13,8 +13,6 @@ export async function Classify(code: string) {
   for (const card in deckList) {
     const match = pattern.exec(card);
     if (match) {
-      console.log(deckList)
-      console.log(match[1]);
       classifiedData.ace = match[1];
     }
     //　たまに(ACE SPEC) がつかないACE SPECがあるのでその対応
